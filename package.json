@@ -1,0 +1,15 @@
+{
+  "name": "dotcodex",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "codex:copy": "tsx scripts/sync_codex.ts copy",
+    "codex:check": "tsx scripts/sync_codex.ts check",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.3",
+    "tsx": "^4.20.5"
+  }
+}
