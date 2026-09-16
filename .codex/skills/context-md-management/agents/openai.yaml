@@ -1,0 +1,3 @@
+interface:
+  display_name: "CONTEXT.md Management"
+  short_description: "Manage hierarchical CONTEXT.md files"
