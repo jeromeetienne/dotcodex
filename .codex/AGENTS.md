@@ -28,6 +28,7 @@ When writing typescript, use the following technologies:
 - **Zod** — runtime validation of SKILL.md frontmatter
 - **Commander.js** — CLI arg parsing (both packages)
 - **Chalk** — terminal colors (bsky_cli)
+- Prefer monorepos for related packages and manage monorepos with pnpm workspaces.
 
 ## Required Skills
 

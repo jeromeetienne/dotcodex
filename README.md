@@ -15,7 +15,11 @@ projects, so they can be reviewed and shared like any other source file.
     │   ├── agents/openai.yaml
     │   └── references/context-md-management.md
     └── typescript-javascript-style/
-        └── SKILL.md
+        ├── SKILL.md
+        ├── agents/openai.yaml
+        └── references/typescript-javascript-style.md
+scripts/
+└── sync_codex.ts
 ```
 
 ### `AGENTS.md`
@@ -38,21 +42,42 @@ A skill to apply the project's TypeScript and JavaScript style when working in
 
 ## Use
 
-Make the repository's `.codex` directory available to the Codex environment you
-use. If you already have local Codex configuration, review and merge the files
-instead of replacing that configuration without checking it first.
-
-For example, after cloning the repository, compare its configuration with an
-existing Codex configuration directory before copying any files:
+Install the development dependencies after cloning the repository:
 
 ```sh
 git clone https://github.com/jeromeetienne/dotcodex.git
 cd dotcodex
-diff -ru .codex "$HOME/.codex"
+npm install
 ```
 
-Then copy or link only the files you want to adopt. Keep this repository as the
-source of truth for the shared configuration and commit changes here.
+Copy the repository-managed Codex configuration files to the user Codex
+configuration directory:
+
+```sh
+npm run codex:copy
+```
+
+The copy command changes only files present in this repository's `.codex`
+directory. User-specific Codex configuration, session data, and credentials
+remain untouched.
+
+Check that every repository-managed file matches the corresponding user Codex
+configuration file:
+
+```sh
+npm run codex:check
+```
+
+The check command permits extra user-specific files in the user Codex
+configuration directory. Run the TypeScript type check before committing a
+change to the synchronization program:
+
+```sh
+npm run typecheck
+```
+
+Keep this repository as the source of truth for the shared configuration and
+commit changes here.
 
 ## Maintaining skills
 
@@ -61,9 +86,10 @@ state when the skill applies, give the required procedure, and place longer
 guidance in a referenced file when needed. Update the corresponding instruction
 file whenever a skill's scope or required workflow changes.
 
-There is no build step or automated test suite in this repository. Review the
-changed Markdown and confirm that every file and relative reference named by a
-skill exists before committing.
+There is no build step or automated test suite in this repository. Run `npm run
+typecheck` after changing the synchronization program. Review changed Markdown
+and confirm that every file and relative reference named by a skill exists
+before committing.
 
 ## License
 
